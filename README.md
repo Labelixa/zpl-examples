@@ -31,6 +31,42 @@ There is also a CLI in the official Node SDK:
 npx labelixa preview examples/shipping-label-4x6.zpl --width 4 --height 6 --out label.png
 ```
 
+## Preview and lint from an AI assistant (MCP)
+
+Labelixa runs a remote [MCP](https://modelcontextprotocol.io) server at
+`https://api.labelixa.com/mcp`, so an assistant can render and lint
+these files for you. We have tested it with Claude Desktop and Claude
+Code; other MCP-capable clients can point at the same endpoint, but we
+have not verified them ourselves.
+
+Claude Code, one line:
+
+```sh
+claude mcp add --transport http labelixa https://api.labelixa.com/mcp
+```
+
+Claude Desktop (or any client that takes a JSON server entry):
+
+```json
+{
+  "mcpServers": {
+    "labelixa": { "type": "http", "url": "https://api.labelixa.com/mcp" }
+  }
+}
+```
+
+Prefer a local process? The same tools ship as an npm package:
+`npx -y labelixa-mcp` (stdio transport, optional `LABELIXA_API_KEY`).
+
+Then ask, for example:
+
+> Run `zpl_validate` on `examples/shipping-label-4x6.zpl`, then show me
+> the render with `zpl_preview` at 8 dpmm, 4×6 in.
+
+Tools used by these examples: `zpl_validate`, `zpl_preview`,
+`zpl_command_help`. The anonymous quota applies without an API key.
+Details and the current client list: [labelixa.com/mcp](https://labelixa.com/mcp).
+
 ## Examples
 
 | File | Size | Shows |
