@@ -1,6 +1,6 @@
 // Render a ZPL file to PNG via the Labelixa REST API (.NET 6+).
-// Free tier needs no key (output is watermarked); set the X-API-Key
-// header to use your own quota.
+// Free tier needs no key and output carries NO watermark; set the
+// X-API-Key header to use your own quota.
 using var http = new HttpClient();
 // http.DefaultRequestHeaders.Add("X-API-Key", "lbx_...");
 

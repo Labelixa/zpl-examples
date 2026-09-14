@@ -1,5 +1,5 @@
 // Render and lint a ZPL file via the Labelixa REST API (Node 18+, no deps).
-// Free tier needs no key (output is watermarked); add an X-API-Key header
+// Free tier needs no key and output carries NO watermark; add an X-API-Key header
 // to use your own quota.
 import { readFile, writeFile } from "node:fs/promises";
 

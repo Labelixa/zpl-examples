@@ -1,6 +1,6 @@
 """Render and lint a ZPL file via the Labelixa REST API (requests only).
 
-Free tier needs no key (output is watermarked); pass your key in the
+Free tier needs no key and output carries NO watermark; pass your key in the
 X-API-Key header to use your own quota.
 """
 import requests

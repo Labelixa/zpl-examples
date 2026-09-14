@@ -1,6 +1,6 @@
 #!/bin/sh
 # Render a ZPL file to PNG with a single request. Free tier needs no key
-# (output is watermarked); add -H "X-API-Key: lbx_..." for your own quota.
+# and output carries NO watermark; add -H "X-API-Key: lbx_..." for your own quota.
 curl -X POST "https://api.labelixa.com/v1/printers/8dpmm/labels/4x6/0" \
      --data-binary @../examples/shipping-label-4x6.zpl > label.png
 

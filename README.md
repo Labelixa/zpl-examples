@@ -1,5 +1,7 @@
 # ZPL Examples
 
+[![ZPL validated with Labelixa](https://labelixa.com/static/badge-zpl-validated.svg)](https://labelixa.com/tools/zpl-preview)
+
 Working, tested **Zebra ZPL** label examples — shipping labels, product
 barcodes, QR codes, shelf labels — plus copy-paste integration snippets
 for calling the [Labelixa](https://labelixa.com) rendering API from
@@ -19,9 +21,15 @@ curl -X POST "https://api.labelixa.com/v1/printers/8dpmm/labels/4x6/0" \
      --data-binary @examples/shipping-label-4x6.zpl > label.png
 ```
 
-No API key required for the free tier (output is watermarked); see the
-[API reference](https://labelixa.com/docs/api) for authentication,
-PDF output, ZPL→EPL2 translation and limits.
+No API key required for the free tier, and no plan watermarks the
+output; see the [API reference](https://labelixa.com/docs/api) for
+authentication, PDF output, ZPL→EPL2 translation and limits.
+
+There is also a CLI in the official Node SDK:
+
+```sh
+npx labelixa preview examples/shipping-label-4x6.zpl --width 4 --height 6 --out label.png
+```
 
 ## Examples
 
@@ -45,6 +53,12 @@ resolution. `^PW`/`^LL` values are dots: inches × 203.
 | [`integrations/python-requests.py`](integrations/python-requests.py) | Python (`requests`) — or use the official SDK: `pip install labelixa` ([PyPI](https://pypi.org/project/labelixa/)) |
 | [`integrations/node-fetch.mjs`](integrations/node-fetch.mjs) | Node.js 18+ (built-in `fetch`, no deps) — or use the official SDK: `npm install labelixa` ([npm](https://www.npmjs.com/package/labelixa)) |
 | [`integrations/csharp-httpclient.cs`](integrations/csharp-httpclient.cs) | C# (`HttpClient`, .NET 6+) |
+| [`integrations/java-httpclient.java`](integrations/java-httpclient.java) | Java 11+ (`java.net.http`, no deps) |
+| [`integrations/go-nethttp.go`](integrations/go-nethttp.go) | Go (stdlib `net/http`, no deps) |
+
+All snippets do the same thing — POST raw ZPL, get a PNG back — so pick
+your language and adapt. Quota errors return `429` with a `Retry-After`
+header; respect it instead of hammering.
 
 ## ZPL cheat notes
 
